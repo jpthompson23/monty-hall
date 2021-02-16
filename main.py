@@ -1,19 +1,21 @@
 import random
 from collections import Counter
 
-door_indices = [0, 1, 2]
+N_DOORS = 3
+
+door_indices = [x for x in range(N_DOORS)]
 
 
 def simulate(do_switch_choice):
-    doors = [False]*3
+    doors = [False]*N_DOORS
     prize_door = random.choice(door_indices)
     doors[prize_door] = True
     my_choice = random.choice(door_indices)
     if do_switch_choice:
-        reveal_set = set(door_indices)
-        reveal_set.discard(prize_door)
-        reveal_set.discard(my_choice)
-        reveal = reveal_set.pop()
+        indices_set = set(door_indices)
+        indices_set.discard(prize_door)
+        indices_set.discard(my_choice)
+        reveal = indices_set.pop()
         choice_set = set(door_indices)
         choice_set.discard(reveal)
         choice_set.discard(my_choice)
